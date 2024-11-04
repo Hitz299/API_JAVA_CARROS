@@ -63,7 +63,9 @@ public class CarroResource {
 
     @DELETE
     @Path("{chassi}")
-    public void remover(@PathParam("chassi") String chassi) throws EntidadeNaoEncontradaException, SQLException {
-        carroDao.remover(chassi);
+    public Response remover(@PathParam("chassi") String chassi) throws EntidadeNaoEncontradaException, SQLException {
+        String mensagem = carroDao.remover(chassi);
+        return Response.ok().entity(mensagem).build(); 
     }
+
 }

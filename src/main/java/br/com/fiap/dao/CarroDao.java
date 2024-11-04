@@ -94,7 +94,7 @@ public class CarroDao {
         return carro;
     }
 
-    public void remover(String chassi) throws SQLException, EntidadeNaoEncontradaException {
+    public String remover(String chassi) throws SQLException, EntidadeNaoEncontradaException {
         try(PreparedStatement stm = connection.prepareStatement(SQL_DELETE)) {
             stm.setString(1, chassi);
             Integer linhas = stm.executeUpdate();
@@ -102,5 +102,7 @@ public class CarroDao {
             if (linhas == 0)
                 throw new EntidadeNaoEncontradaException("Carro não encontrado!");
         }
+        
+        return "O veículo foi removido com sucesso!";
     }
 }
